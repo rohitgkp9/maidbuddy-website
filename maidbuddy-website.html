@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maid Buddy - Your Trusted Partner for Home & Happiness</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #5BBAA7;
+            --primary-dark: #4A9A88;
+            --primary-light: #E8F5F2;
+            --accent: #FF9B5A;
+            --dark: #2C3E50;
+            --light: #F8FAFB;
+            --text: #34495E;
+            --text-light: #7F8C8D;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background: #fff;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(91, 186, 167, 0.1);
+            z-index: 1000;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 3rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(91, 186, 167, 0.3);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white !important;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(91, 186, 167, 0.3);
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(91, 186, 167, 0.4);
+        }
+
+        .cta-button::after {
+            display: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            min-height: 90vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            padding: 4rem 3rem;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(91, 186, 167, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(50px, -50px) rotate(120deg); }
+            66% { transform: translate(-30px, 30px) rotate(240deg); }
+        }
+
+        .hero-content {
+            animation: fadeInLeft 1s ease-out;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: 0 8px 25px rgba(91, 186, 167, 0.3);
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(91, 186, 167, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: 2px solid var(--primary);
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-light);
+            transform: translateY(-3px);
+        }
+
+        .hero-image {
+            position: relative;
+            animation: fadeInRight 1s ease-out;
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .floating-card {
+            position: absolute;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            animation: floatCard 6s infinite ease-in-out;
+        }
+
+        @keyframes floatCard {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .card-1 {
+            top: 10%;
+            right: -10%;
+            animation-delay: 0s;
+        }
+
+        .card-2 {
+            bottom: 15%;
+            left: -5%;
+            animation-delay: 2s;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 3rem;
+            background: var(--light);
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 25px;
+            text-align: center;
+            transition: all 0.4s;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(135deg, transparent, rgba(91, 186, 167, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(91, 186, 167, 0.2);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-light), #D4EDE8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            transition: all 0.4s;
+        }
+
+        .service-card:hover .service-icon {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            font-weight: 700;
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .feature-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            padding: 2rem;
+            background: var(--light);
+            border-radius: 20px;
+            transition: all 0.3s;
+            opacity: 0;
+            animation: fadeInUp 0.6s forwards;
+        }
+
+        .feature-item:nth-child(1) { animation-delay: 0.1s; }
+        .feature-item:nth-child(2) { animation-delay: 0.2s; }
+        .feature-item:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .feature-item:hover {
+            background: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transform: translateX(10px);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .feature-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+            font-weight: 700;
+        }
+
+        .feature-content p {
+            color: var(--text-light);
+        }
+
+        .app-preview {
+            position: relative;
+        }
+
+        .app-preview img {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            display: block;
+            filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.2));
+        }
+
+        /* Stats Section */
+        .stats {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            padding: 5rem 3rem;
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 3rem;
+            background: var(--dark);
+            color: white;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .contact-item h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .contact-item a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a252f;
+            color: white;
+            padding: 2rem 3rem;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            nav {
+                padding: 1rem 2rem;
+            }
+
+            nav ul {
+                gap: 1.5rem;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 3rem 2rem;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                gap: 2rem;
+            }
+
+            .section-title h2 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .btn-primary, .btn-secondary {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <div class="logo-icon">🏠</div>
+                <span>Maid Buddy</span>
+            </div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#contact" class="cta-button">Get Started</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Your Trusted Partner for Home & Happiness</h1>
+            <p>Quality Help, Peace & Rud Pilde. Find verified domestic help for all your household needs - from maids and cooks to nannies and security guards.</p>
+            <div class="hero-buttons">
+                <a href="#services" class="btn-primary">Explore Services</a>
+                <a href="#contact" class="btn-secondary">Contact Us</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="floating-card card-1" style="width: 200px;">
+                <div style="font-size: 2rem; margin-bottom: 0.5rem;">✓</div>
+                <div style="font-weight: 600;">Verified Professionals</div>
+            </div>
+            <div class="floating-card card-2" style="width: 180px;">
+                <div style="font-size: 2rem; margin-bottom: 0.5rem;">⭐</div>
+                <div style="font-weight: 600;">24/7 Support</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="section-title">
+            <h2>Solutions for Every Household Need</h2>
+            <p>Professional domestic help services tailored to your requirements</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🧹</div>
+                <h3>Maid Services</h3>
+                <p>Experienced and trustworthy maids for daily household cleaning and maintenance</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">👨‍🍳</div>
+                <h3>Cook Services</h3>
+                <p>Professional cooks skilled in various cuisines for your culinary needs</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">👶</div>
+                <h3>Nanny Services</h3>
+                <p>Caring and qualified nannies for your children's safety and development</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">👴</div>
+                <h3>Jappa Services</h3>
+                <p>Compassionate care for elderly family members with dignity and respect</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🎒</div>
+                <h3>Kid Caregiver</h3>
+                <p>Dedicated caregivers ensuring your children's well-being and happiness</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🛡️</div>
+                <h3>Security Guard</h3>
+                <p>Trained security personnel for your home and family's protection</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="features-grid">
+            <div class="feature-list">
+                <div class="feature-item">
+                    <div class="feature-icon">✓</div>
+                    <div class="feature-content">
+                        <h3>Verified Professionals</h3>
+                        <p>All our staff undergo thorough background checks and verification processes to ensure your safety and peace of mind.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📱</div>
+                    <div class="feature-content">
+                        <h3>Easy Mobile App</h3>
+                        <p>Browse profiles, book services, and manage your household staff seamlessly through our user-friendly mobile application.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🌟</div>
+                    <div class="feature-content">
+                        <h3>Quality Assurance</h3>
+                        <p>We ensure the highest standards of service with regular training and performance monitoring of all our personnel.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="app-preview">
+                <svg width="400" height="600" viewBox="0 0 400 600" style="width: 100%; height: auto;">
+                    <!-- Phone frame -->
+                    <rect x="20" y="20" width="360" height="560" rx="40" fill="#2C3E50"/>
+                    <rect x="35" y="35" width="330" height="530" rx="25" fill="white"/>
+                    
+                    <!-- Screen content -->
+                    <rect x="35" y="35" width="330" height="100" fill="#5BBAA7"/>
+                    <text x="200" y="90" text-anchor="middle" fill="white" font-size="24" font-weight="bold">Maid Buddy</text>
+                    
+                    <!-- Profile cards -->
+                    <g transform="translate(60, 160)">
+                        <rect width="90" height="110" rx="10" fill="#E8F5F2"/>
+                        <circle cx="45" cy="35" r="20" fill="#5BBAA7"/>
+                        <text x="45" y="70" text-anchor="middle" font-size="12" font-weight="600">Ram Pal</text>
+                        <text x="45" y="85" text-anchor="middle" font-size="10" fill="#7F8C8D">Cook</text>
+                    </g>
+                    <g transform="translate(170, 160)">
+                        <rect width="90" height="110" rx="10" fill="#E8F5F2"/>
+                        <circle cx="45" cy="35" r="20" fill="#FF9B5A"/>
+                        <text x="45" y="70" text-anchor="middle" font-size="12" font-weight="600">Jane Doe</text>
+                        <text x="45" y="85" text-anchor="middle" font-size="10" fill="#7F8C8D">Nanny</text>
+                    </g>
+                    <g transform="translate(60, 290)">
+                        <rect width="90" height="110" rx="10" fill="#E8F5F2"/>
+                        <circle cx="45" cy="35" r="20" fill="#5BBAA7"/>
+                        <text x="45" y="70" text-anchor="middle" font-size="12" font-weight="600">Deepa Roy</text>
+                        <text x="45" y="85" text-anchor="middle" font-size="10" fill="#7F8C8D">Maid</text>
+                    </g>
+                    <g transform="translate(170, 290)">
+                        <rect width="90" height="110" rx="10" fill="#E8F5F2"/>
+                        <circle cx="45" cy="35" r="20" fill="#FF9B5A"/>
+                        <text x="45" y="70" text-anchor="middle" font-size="12" font-weight="600">Himanshu</text>
+                        <text x="45" y="85" text-anchor="middle" font-size="10" fill="#7F8C8D">Security</text>
+                    </g>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3>10,000+</h3>
+                <p>Happy Families</p>
+            </div>
+            <div class="stat-item">
+                <h3>15,000+</h3>
+                <p>Verified Staff</p>
+            </div>
+            <div class="stat-item">
+                <h3>50+</h3>
+                <p>Cities Covered</p>
+            </div>
+            <div class="stat-item">
+                <h3>24/7</h3>
+                <p>Customer Support</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2>Get in Touch</h2>
+        <p>Ready to find the perfect help for your home?</p>
+        <div class="contact-info">
+            <div class="contact-item">
+                <div class="contact-icon">📞</div>
+                <h3>Call Us</h3>
+                <a href="tel:1-800-MAIDBUDDY">1-800-MAIDBUDDY</a>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">🌐</div>
+                <h3>Visit Website</h3>
+                <a href="http://www.maidbuddy.com" target="_blank">www.maidbuddy.com</a>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">📧</div>
+                <h3>Email Us</h3>
+                <a href="mailto:info@maidbuddy.com">info@maidbuddy.com</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Maid Buddy Placement Services. All rights reserved.</p>
+        <p>Your Trusted Partner for Home & Happiness</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .feature-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Counter animation for stats
+        const animateCounter = (element, target) => {
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target.toLocaleString() + '+';
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current).toLocaleString() + '+';
+                }
+            }, 30);
+        };
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = entry.target.querySelector('h3');
+                    const value = parseInt(target.textContent.replace(/[^0-9]/g, ''));
+                    animateCounter(target, value);
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.stat-item').forEach(stat => {
+            statsObserver.observe(stat);
+        });
+    </script>
+</body>
+</html>
